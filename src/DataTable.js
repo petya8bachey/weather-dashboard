@@ -9,7 +9,7 @@ const DataTable = () => {
 
   useEffect(() => {
     fetchData();
-    const interval = setInterval(fetchData, 30000); // 5 минут
+    const interval = setInterval(fetchData, 30000); // 30 
     return () => clearInterval(interval);
   }, []);
 
