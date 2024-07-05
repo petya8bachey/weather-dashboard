@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  oracle:
+    image: gvenzl/oracle-xe:latest
+    container_name: oracle-db
+    environment:
+      - ORACLE_PASSWORD=123
+      - ORACLE_CHARACTERSET=AL32UTF8
+    ports:
+      - 1521:1521
+      - 5500:5500
+    volumes:
+      - oracle-data:/opt/oracle/oradata
+    restart: always
+
+volumes:
+  oracle-data:
+    driver: local
+
+# sudo docker-compose up -d --remove-orphans
+# sudo docker exec -it oracle-db bash
+# sqlplus sys/123@//localhost:1521/XEPDB1 as sysdba
+
+# CREATE TABLE weather_data (id NUMBER PRIMARY KEY, city VARCHAR2(100), temperature NUMBER, pressure NUMBER, humidity NUMBER, timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+
+# INSERT INTO weather_data (id, city, temperature, pressure, humidity) VALUES (1, 'City A', 20, 1012, 50);
+# INSERT INTO weather_data (id, city, temperature, pressure, humidity) VALUES (2, 'City B', 25, 1015, 60);
+
